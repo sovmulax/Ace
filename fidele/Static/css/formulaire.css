@@ -109,6 +109,11 @@ button a {
   box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
 }
 
+.congrat{
+    text-align: center;
+    font-size: 2em;
+}
+
 /* gestion des écrans */
 
 @media (max-width: 550px) {
