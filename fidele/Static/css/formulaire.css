@@ -6,3 +6,26 @@
 body{
     background-color: #f8f1f4;
 }
+
+.title{
+    font-size: 3.5em;
+    text-align: center;
+}
+input[name="nom"]{
+    border: transparent;
+    border-bottom: 1px solid #ff0066;
+    width: 25rem;
+    line-height: 2rem;
+    font-size: 1em;
+    letter-spacing: 1px;
+    margin: 2rem;
+    background-color: #FFF;
+}
+
+input:focus{
+    border-bottom: 3px solid #ff0066;
+}
+
+.form-1{
+    text-align: center;
+}
