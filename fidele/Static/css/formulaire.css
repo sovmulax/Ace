@@ -12,6 +12,34 @@ body {
   text-align: center;
 }
 
+input {
+  border: transparent;
+  border-bottom: 1px solid #ff0066;
+  width: 25rem;
+  height: 2rem;
+  font-size: 1em;
+  letter-spacing: 1px;
+  margin: 0.5rem;
+  background-color: #fff;
+}
+
+input[type="radio"]{
+    height: auto;
+    display: inline;
+    width: auto;
+}
+
+select {
+  border: transparent;
+  border-bottom: 1px solid #ff0066;
+  width: 25rem;
+  height: 2rem;
+  font-size: 1em;
+  letter-spacing: 1px;
+  margin: 0.5rem;
+  background-color: #fff;
+}
+
 input[name="nom"] {
   border: transparent;
   border-bottom: 1px solid #ff0066;
@@ -19,7 +47,7 @@ input[name="nom"] {
   line-height: 2rem;
   font-size: 1em;
   letter-spacing: 1px;
-  margin: 2rem;
+  margin: 0.5rem;
   background-color: #fff;
 }
 
@@ -28,6 +56,11 @@ input:focus {
 }
 
 .form-1 {
+  text-align: center;
+}
+
+.form-2 {
+    margin-top: 3rem;
   text-align: center;
 }
 
@@ -84,8 +117,10 @@ button a {
   }
 
   input[name="nom"] {
-    border: transparent;
-    border-bottom: 1px solid #ff0066;
+    width: 20rem;
+  }
+
+  input{
     width: 20rem;
   }
 
@@ -93,6 +128,10 @@ button a {
     width: 150px;
     height: 45px;
     margin: 15px;
+  }
+
+  select {
+    width: 20rem;
   }
 }
 
@@ -107,13 +146,19 @@ button a {
     height: 40px;
   }
 
-  .titles{
-      font-size: 1.5em;
+  .titles {
+    font-size: 1.5em;
   }
 
   input[name="nom"] {
-    border: transparent;
-    border-bottom: 1px solid #ff0066;
     width: 15rem;
   }
+
+  input{
+    width: 15rem;
+  }
+  select {
+    width: 15rem;
+  }
+  
 }
