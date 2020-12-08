@@ -1,31 +1,119 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-body{
-    background-color: #f8f1f4;
+body {
+  background-color: #f8f1f4;
 }
 
-.title{
-    font-size: 3.5em;
-    text-align: center;
+.titles {
+  font-size: 3.5em;
+  text-align: center;
 }
-input[name="nom"]{
+
+input[name="nom"] {
+  border: transparent;
+  border-bottom: 1px solid #ff0066;
+  width: 25rem;
+  line-height: 2rem;
+  font-size: 1em;
+  letter-spacing: 1px;
+  margin: 2rem;
+  background-color: #fff;
+}
+
+input:focus {
+  border-bottom: 3px solid #ff0066;
+}
+
+.form-1 {
+  text-align: center;
+}
+
+button a {
+  color: white;
+  text-decoration: none;
+}
+
+.btn-hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color-11 {
+  background-image: linear-gradient(
+    to right,
+    #ff0066,
+    #ff1a75,
+    #e6005c,
+    #ff0066
+  );
+  box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
+}
+
+/* gestion des écrans */
+
+@media (max-width: 550px) {
+  .titles {
+    font-size: 1.8em;
+  }
+
+  input[name="nom"] {
     border: transparent;
     border-bottom: 1px solid #ff0066;
-    width: 25rem;
-    line-height: 2rem;
-    font-size: 1em;
-    letter-spacing: 1px;
-    margin: 2rem;
-    background-color: #FFF;
+    width: 20rem;
+  }
+
+  .btn-hover {
+    width: 150px;
+    height: 45px;
+    margin: 15px;
+  }
 }
 
-input:focus{
-    border-bottom: 3px solid #ff0066;
-}
+@media (max-width: 300px) {
+  .btn-hover {
+    width: 100px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    height: 40px;
+  }
 
-.form-1{
-    text-align: center;
+  .titles{
+      font-size: 1.5em;
+  }
+
+  input[name="nom"] {
+    border: transparent;
+    border-bottom: 1px solid #ff0066;
+    width: 15rem;
+  }
 }
