@@ -7,13 +7,13 @@
 }
 
 body {
-  background-color: #f7e7ed;
+  background-color: #f8f1f4;
+  position: relative;
 }
 
 .acceuil {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .title {
