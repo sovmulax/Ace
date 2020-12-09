@@ -13,7 +13,7 @@ nav {
   background-color: white;
   display: flex;
   justify-content: center;
-  position: fixed;
+  position: static;
   -webkit-box-shadow: 0px 0px 50px -11px rgba(0, 0, 0, 0.66);
   -moz-box-shadow: 0px 0px 50px -11px rgba(0, 0, 0, 0.66);
   box-shadow: 0px 0px 50px -11px rgba(0, 0, 0, 0.66);
@@ -49,11 +49,17 @@ ul li:hover {
 
 .contain {
   margin-top: 3rem;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.container {
+  margin-top: 3rem;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .stat {
@@ -63,5 +69,17 @@ ul li:hover {
   margin: 0.5rem;
   background-color: white;
   text-align: center;
+  border-radius: 6px;
+  line-height: 2.5rem;
+}
 
+.stat h2{
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.stat:hover{
+background-color: #ff0066;
+color: #f8f1f4;
+transition: 0.3s ease;
 }
