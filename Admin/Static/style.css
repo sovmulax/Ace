@@ -56,11 +56,22 @@ ul li:hover {
   flex-wrap: wrap;
 }
 
+.containt {
+  margin-top: 3rem;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .container {
   margin-top: 3rem;
   margin-left: 10%;
   margin-right: 10%;
 }
+
+
 
 .stat {
   width: 10rem;
@@ -73,13 +84,43 @@ ul li:hover {
   line-height: 2.5rem;
 }
 
-.stat h2{
+.stat h2 {
   font-size: 2em;
   font-weight: 700;
 }
 
-.stat:hover{
-background-color: #ff0066;
-color: #f8f1f4;
-transition: 0.3s ease;
+.stat:hover {
+  background-color: #ff0066;
+  color: #f8f1f4;
+  transition: 0.3s ease;
+}
+
+table {
+  width: 100%;
+}
+
+table,
+td,
+th,
+tr {
+  height: 3.5rem;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th {
+  border: 1px solid #f8f1f4;
+  background-color: #ff0066;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+td,
+tr {
+  background-color: white;
+  border: 1px solid white;
+}
+
+form{
+  text-align: center;
 }
