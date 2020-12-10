@@ -1,3 +1,11 @@
+<?php 
+include '../../php/connexion.php';
+$errors = array('nom' => '');
+
+if(isset($_POST['submit'])){
+  
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -12,10 +20,12 @@
     </div>
     <div class="form-1">
       <form method="POST">
-        <div class="erreur"></div>
+        <div class="erreur">
+          <?php echo $errors['nom']; ?>
+        </div>
         <input type="text" name="nom" placeholder="Nom et Prénom" /><br />
         <button type="submit" name="submit" class="btn-hover color-11">
-          <a href="#">Validé</a>
+          Validé
         </button>
       </form>
     </div>
