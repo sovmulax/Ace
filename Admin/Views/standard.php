@@ -1,5 +1,15 @@
 <?php 
 include '../../php/connexion.php';
+$i = 1;
+$j = 1;
+$o = 1;
+$p = 1;
+$q = 1;
+$result = $connexion->query('SELECT * FROM liste WHERE classe = 1 OR classe = 2 OR classe = 3 OR classe = 4 OR classe = 5');
+$result0 = $connexion->query('SELECT * FROM liste WHERE classe = 6 OR classe = 7 OR classe = 8 OR classe = 9');
+$result1 = $connexion->query('SELECT * FROM liste WHERE classe = 10 ');
+$result2 = $connexion->query('SELECT * FROM liste WHERE classe = 11 ');
+$result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 13 OR classe = 14 OR classe = 15');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -27,6 +37,18 @@ include '../../php/connexion.php';
             <th>Date de naissance</th>
             <th>Contact</th>
           </tr>
+          <?php while($res = $result->fetch()): ?>
+          <tr>
+            <td><?php echo $i++; ?></td>
+            <td><?php echo $res['nomPrenom'] ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM classe WHERE id = :id');
+                                            $req->execute(['id' => $res['classe']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
+            <td><?php echo $res['born_date']; ?></td>
+            <td><?php echo $res['contact']; ?></td>
+          </tr>
+          <?php endwhile ?>
         </table>
       </div>
       <div class="containt" id="licence2">
@@ -39,6 +61,18 @@ include '../../php/connexion.php';
             <th>Date de naissance</th>
             <th>Contact</th>
           </tr>
+          <?php while($res = $result0->fetch()): ?>
+          <tr>
+            <td><?php echo $j++; ?></td>
+            <td><?php echo $res['nomPrenom'] ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM classe WHERE id = :id');
+                                            $req->execute(['id' => $res['classe']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
+            <td><?php echo $res['born_date']; ?></td>
+            <td><?php echo $res['contact']; ?></td>
+          </tr>
+          <?php endwhile ?>
         </table>
       </div>
       <div class="containt" id="licence3">
@@ -51,6 +85,18 @@ include '../../php/connexion.php';
             <th>Date de naissance</th>
             <th>Contact</th>
           </tr>
+          <?php while($res = $result3->fetch()): ?>
+          <tr>
+            <td><?php echo $o++; ?></td>
+            <td><?php echo $res['nomPrenom'] ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM classe WHERE id = :id');
+                                            $req->execute(['id' => $res['classe']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
+            <td><?php echo $res['born_date']; ?></td>
+            <td><?php echo $res['contact']; ?></td>
+          </tr>
+          <?php endwhile ?>
         </table>
       </div>
       <div class="containt" id="master1">
@@ -63,6 +109,18 @@ include '../../php/connexion.php';
             <th>Date de naissance</th>
             <th>Contact</th>
           </tr>
+          <?php while($res = $result1->fetch()): ?>
+          <tr>
+            <td><?php echo $p++; ?></td>
+            <td><?php echo $res['nomPrenom'] ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM classe WHERE id = :id');
+                                            $req->execute(['id' => $res['classe']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
+            <td><?php echo $res['born_date']; ?></td>
+            <td><?php echo $res['contact']; ?></td>
+          </tr>
+          <?php endwhile ?>
         </table>
       </div>
       <div class="containt" id="master2">
@@ -75,6 +133,18 @@ include '../../php/connexion.php';
             <th>Date de naissance</th>
             <th>Contact</th>
           </tr>
+          <?php while($res = $result2->fetch()): ?>
+          <tr>
+            <td><?php echo $q++; ?></td>
+            <td><?php echo $res['nomPrenom'] ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM classe WHERE id = :id');
+                                            $req->execute(['id' => $res['classe']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
+            <td><?php echo $res['born_date']; ?></td>
+            <td><?php echo $res['contact']; ?></td>
+          </tr>
+          <?php endwhile ?>
         </table>
       </div>
     </div>
