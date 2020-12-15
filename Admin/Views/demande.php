@@ -1,5 +1,30 @@
 <?php 
 include '../../php/connexion.php';
+$err_classe = null;
+$err_comit = null;
+$err_genre = null;
+$err_mois = null;
+$err_result = null;
+
+if(!empty($_POST['submit-séance'])){
+
+}
+
+if(!empty($_POST['submit-séance'])){
+  
+}
+
+if(!empty($_POST['submit-séance'])){
+  
+}
+
+if(!empty($_POST['submit-séance'])){
+  
+}
+
+if(!empty($_POST['submit-séance'])){
+  
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
