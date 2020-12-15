@@ -4,13 +4,8 @@ if (!isset($_SESSION['contact'])) {
   exit();
 }
 include '../../php/connexion.php';
-<<<<<<< HEAD
-$errors = array('nom' => '','prenom' => '','email' => '' ,'date' => '' ,'classe' => '' ,'comit' => '');
-
-=======
 $errors = array('nom' => '', 'prenom' => '', 'email' => '', 'date' => '', 'classe' => '', 'comit' => '', 'lit' => '', 'chambre' => '');
 $start = '2020-01-01';
->>>>>>> fidele
 
 //commité
 $sql00 = "SELECT * FROM commite";
@@ -115,24 +110,17 @@ if (isset($_POST['submit'])) {
     $contact = mysqli_real_escape_string($conn, $_SESSION['contact']);
     $lit = mysqli_real_escape_string($conn, $_POST['lit']);
     $chambre = mysqli_real_escape_string($conn, $_POST['chambre']);
-<<<<<<< HEAD
-=======
     $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
     $_SESSION['congrat']['nom'] = $nom;
     $_SESSION['congrat']['genre'] = $genre;
     $_SESSION['valid'] = '';
     $_SESSION['valid'] = 'maintenant';
->>>>>>> fidele
     $genre = $_POST['genre'];
     $sql = "INSERT INTO liste(nomPrenom, email, classe, commit, genre, born_date,	contact, chambre, lit) VALUES('$np', '$email', '$classe', '$commit', '$genre', '$date', '$contact', '$chambre', '$lit')";
     // save to db and check
     if (mysqli_query($conn, $sql)) {
       // success
-<<<<<<< HEAD
-      header('Location: congrat.html');
-=======
       header('Location: congrat.php');
->>>>>>> fidele
     } else {
       echo 'query error: ' . mysqli_error($conn);
     }
