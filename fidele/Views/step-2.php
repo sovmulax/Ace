@@ -4,7 +4,7 @@ if (!isset($_SESSION['contact'])) {
   exit();
 }
 include '../../php/connexion.php';
-$errors = array('nom' => '', 'prenom' => '', 'email' => '', 'date' => '', 'classe' => '', 'comit' => '');
+$errors = array('nom' => '','prenom' => '','email' => '' ,'date' => '' ,'classe' => '' ,'comit' => '');
 
 
 //commité
