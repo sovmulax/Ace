@@ -110,7 +110,10 @@ if (isset($_POST['submit'])) {
     $contact = mysqli_real_escape_string($conn, $_SESSION['contact']);
     $lit = mysqli_real_escape_string($conn, $_POST['lit']);
     $chambre = mysqli_real_escape_string($conn, $_POST['chambre']);
-    $_SESSION['congrat'] = array('nom' => $nom, 'genre' => $genre);
+    $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
+    $_SESSION['congrat']['nom'] = $nom;
+    $_SESSION['congrat']['genre'] = $genre;
+    $_SESSION['valid'] = '';
     $_SESSION['valid'] = 'maintenant';
     $genre = $_POST['genre'];
     $sql = "INSERT INTO liste(nomPrenom, email, classe, commit, genre, born_date,	contact, chambre, lit) VALUES('$np', '$email', '$classe', '$commit', '$genre', '$date', '$contact', '$chambre', '$lit')";
