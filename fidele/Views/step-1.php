@@ -23,6 +23,12 @@ if (isset($_POST['submit'])) {
         $sql = "INSERT INTO 2020_12_11(id_membre, presents, absents) VALUES('$id', 'oui', 'non')";
         if (mysqli_query($conn, $sql)) {
           // success
+<<<<<<< HEAD
+=======
+          $_SESSION['valid'] = '';
+          $_SESSION['valid'] = 'deja';
+          header('Location: congrat.php');
+>>>>>>> fidele
         } else {
           echo 'query error: ' . mysqli_error($conn);
         }
