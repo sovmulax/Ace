@@ -110,12 +110,10 @@ if (isset($_POST['submit'])) {
     $contact = mysqli_real_escape_string($conn, $_SESSION['contact']);
     $lit = mysqli_real_escape_string($conn, $_POST['lit']);
     $chambre = mysqli_real_escape_string($conn, $_POST['chambre']);
+    $genre = $_POST['genre'];
     $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
     $_SESSION['congrat']['nom'] = $nom;
     $_SESSION['congrat']['genre'] = $genre;
-    $_SESSION['valid'] = '';
-    $_SESSION['valid'] = 'maintenant';
-    $genre = $_POST['genre'];
     $sql = "INSERT INTO liste(nomPrenom, email, classe, commit, genre, born_date,	contact, chambre, lit) VALUES('$np', '$email', '$classe', '$commit', '$genre', '$date', '$contact', '$chambre', '$lit')";
     // save to db and check
     if (mysqli_query($conn, $sql)) {
@@ -144,18 +142,6 @@ if (isset($_POST['submit'])) {
   </div>
   <div class="form-2">
     <form method="POST">
-<<<<<<< HEAD
-      <div class="erreur"></div>
-      <input type="text" name="nom" placeholder="Nom" /><br>
-      <div class="erreur"></div>
-      <input type="text" name="prenom" placeholder="Prénom" /><br>
-      <div class="erreur"></div>
-      <input type="email" name="email" placeholder="Entrée vôtre email" /><br>
-      <div class="erreur"></div>
-      <label for="date">Date de Naissance</label><br />
-      <input type="date" name="date" id="date" /><br>
-      <div class="erreur"></div>
-=======
       <div class="erreur">
         <?php echo $errors['nom']; ?>
       </div>
@@ -176,43 +162,25 @@ if (isset($_POST['submit'])) {
       <div class="erreur">
         <?php echo $errors['classe']; ?>
       </div>
->>>>>>> fidele
       <select name="classe">
         <option value="">--Selectionné vôtre classe--</option>
         <?php foreach ($resultat as $resultat) { ?>
           <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['nom']; ?></option>
         <?php } ?>
       </select><br>
-<<<<<<< HEAD
-      <div class="erreur"></div>
-=======
->>>>>>> fidele
       <input type="radio" name="genre" value="homme" id="homme" checked="checked" />
       <label for="homme">Homme</label>
       <input type="radio" name="genre" value="femme" id="femme" />
       <label for="femme">Femme</label>
-<<<<<<< HEAD
-      <div class="erreur"></div>
-      <select name="commit">
-=======
       <div class="erreur">
         <?php echo $errors['comit']; ?>
       </div>
       <select name="comit">
->>>>>>> fidele
         <option value="">--Selectionné vôtre Comité--</option>
         <?php foreach ($resultats as $resultat) { ?>
           <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['nom']; ?></option>
         <?php } ?>
       </select><br>
-<<<<<<< HEAD
-      <div class="erreur"></div>
-      <label for="chambre">N° Chambre</label><br>
-      <input type="number" name="chambre" min="01" max="80" id="chambre"/><br>
-      <div class="erreur"></div>
-      <label for="lit">N° Lit</label><br>
-      <input type="number" name="lit" min="1" max="3" id="lit"/><br>
-=======
       <div class="erreur">
         <?php echo $errors['chambre']; ?>
       </div>
@@ -223,7 +191,6 @@ if (isset($_POST['submit'])) {
       </div>
       <label for="lit">N° Lit</label><br>
       <input type="number" name="lit" min="1" max="3" id="lit" /><br>
->>>>>>> fidele
       <button type="submit" name="submit" class="btn-hover color-11">Validé</button>
     </form>
   </div>

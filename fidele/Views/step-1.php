@@ -21,17 +21,18 @@ if (isset($_POST['submit'])) {
       } else {
         //marquer présent
         $sql = "INSERT INTO 2020_12_11(id_membre, presents, absents) VALUES('$id', 'oui', 'non')";
+        $_SESSION['contact'] = htmlspecialchars($_POST['contact']);
         if (mysqli_query($conn, $sql)) {
           // success
-          $_SESSION['valid'] = '';
-          $_SESSION['valid'] = 'deja';
+          $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
+          $_SESSION['valid'] = null;
+          $_SESSION['valid'] = false;
           header('Location: congrat.php');
         } else {
           echo 'query error: ' . mysqli_error($conn);
         }
       }
     } else {
-      $_SESSION['contact'] = htmlspecialchars($_POST['contact']);
       header('Location: step-2.php');
     }
   }
