@@ -1,3 +1,6 @@
+<?php 
+include '../../php/connexion.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -9,9 +12,9 @@
   <body>
     <nav>
       <ul>
-        <li><a href="index.html">Statiques Générale</a></li>
-        <li><a href="standard.html">les listes Standard</a></li>
-        <li><a href="demande.html">Liste trié</a></li>
+        <li><a href="index.php">Statiques Générale</a></li>
+        <li><a href="standard.php">les listes Standard</a></li>
+        <li><a href="demande.php">Liste trié</a></li>
       </ul>
     </nav>
     <div class="container">

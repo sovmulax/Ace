@@ -79,7 +79,7 @@ ul li:hover {
   padding: 2rem;
   margin: 0.5rem;
   background-color: white;
-  text-align: center;
+  text-align: center !important;
   border-radius: 6px;
   line-height: 2.5rem;
 }
