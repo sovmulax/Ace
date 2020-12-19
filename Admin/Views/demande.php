@@ -7,10 +7,28 @@ $err_mois = '';
 $err_seance = '';
 $_SESSION['trie'] = array();
 
-$sql00 = "SELECT * FROM seances";
+$sql00 = "SELECT * FROM dates";
 $result = mysqli_query($conn, $sql00);
 $resultats = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
+
+//classe
+$sql0 = "SELECT * FROM classe";
+$results = mysqli_query($conn, $sql0);
+$resultatt = mysqli_fetch_all($results, MYSQLI_ASSOC);
+mysqli_free_result($results);
+
+//commité
+$sql00 = "SELECT * FROM commite";
+$result = mysqli_query($conn, $sql00);
+$resultats = mysqli_fetch_all($result, MYSQLI_ASSOC);
+mysqli_free_result($result);
+
+//Mois
+$sql01 = "SELECT * FROM mois";
+$results0 = mysqli_query($conn, $sql01);
+$resultatx = mysqli_fetch_all($results0, MYSQLI_ASSOC);
+mysqli_free_result($results0);
 
 if (isset($_POST['submit-seance'])) {
   if (empty($_POST['seance'])) {
@@ -86,7 +104,7 @@ if (!empty($_POST['submit-genre'])) {
         <select name="seance">
           <option value="">--Selectionné la Séance--</option>
           <?php foreach ($resultats as $resultat) { ?>
-            <option value="<?php echo $resultat['date']; ?>"><?php echo $resultat['date']; ?></option>
+            <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['date']; ?></option>
           <?php } ?>
         </select><br />
         <button type="submit" name="submit-seance" class="btn-hover color-11">
@@ -100,8 +118,11 @@ if (!empty($_POST['submit-genre'])) {
       <form method="POST">
         <div class="erreur"></div>
         <select name="classe">
-          <option value="">--Selectionné la classe--</option>
-        </select><br />
+        <option value="">--Selectionné vôtre classe--</option>
+        <?php foreach ($resultatt as $resultat) { ?>
+          <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['nom']; ?></option>
+        <?php } ?>
+      </select><br />
         <button type="submit" name="submit-classe" class="btn-hover color-11">
           Validé
         </button>
@@ -113,8 +134,11 @@ if (!empty($_POST['submit-genre'])) {
       <form method="POST">
         <div class="erreur"></div>
         <select name="comit">
-          <option value="">--Selectionné le Commité--</option>
-        </select><br />
+        <option value="">--Selectionné vôtre Comité--</option>
+        <?php foreach ($resultats as $resultat) { ?>
+          <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['nom']; ?></option>
+        <?php } ?>
+      </select><br />
         <button type="submit" name="submit-comit" class="btn-hover color-11">
           Validé
         </button>
@@ -126,8 +150,11 @@ if (!empty($_POST['submit-genre'])) {
       <form method="POST">
         <div class="erreur"></div>
         <select name="mois">
-          <option value="">--Selectionné le Mois--</option>
-        </select><br />
+        <option value="">--Mois de Naissance--</option>
+        <?php foreach ($resultatx as $resultat) { ?>
+          <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['nom']; ?></option>
+        <?php } ?>
+      </select><br />
         <button type="submit" name="submit-mois" class="btn-hover color-11">
           Validé
         </button>
@@ -140,6 +167,8 @@ if (!empty($_POST['submit-genre'])) {
         <div class="erreur"></div>
         <select name="genre">
           <option value="">--Selectionné le Genre--</option>
+          <option value="femme">Femme</option>
+          <option value="homme">Homme</option>
         </select><br />
         <button type="submit" name="submit-genre" class="btn-hover color-11">
           Validé
