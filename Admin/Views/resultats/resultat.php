@@ -35,7 +35,7 @@ mysqli_free_result($result);
         </tr>
         <?php foreach ($resultats as $res) :
           $ress = $res['id_presence'];
-          $sql0 = "SELECT * FROM liste WHERE id = '$ress'";
+          $sql0 = "SELECT * FROM liste WHERE id = '$ress' ORDER BY nomPrenom ASC";
           $result = mysqli_query($conn, $sql0);
           $resultat = mysqli_fetch_all($result, MYSQLI_ASSOC);
           mysqli_free_result($result);

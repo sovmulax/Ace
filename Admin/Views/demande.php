@@ -9,7 +9,7 @@ $_SESSION['trie'] = array();
 
 $sql00 = "SELECT * FROM dates";
 $result = mysqli_query($conn, $sql00);
-$resultats = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$resultatsx = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
 
 //classe
@@ -39,7 +39,7 @@ if (isset($_POST['submit-seance'])) {
   }
 }
 
-if (!empty($_POST['submit-classe'])) {
+if (isset($_POST['submit-classe'])) {
   if (empty($_POST['classe'])) {
     $err_classe = 'Sélectionner une classe';
   } else {
@@ -48,7 +48,7 @@ if (!empty($_POST['submit-classe'])) {
   }
 }
 
-if (!empty($_POST['submit-comit'])) {
+if (isset($_POST['submit-comit'])) {
   if (empty($_POST['comit'])) {
     $err_comit = 'Sélectionner un comité';
   } else {
@@ -57,7 +57,7 @@ if (!empty($_POST['submit-comit'])) {
   }
 }
 
-if (!empty($_POST['submit-mois'])) {
+if (isset($_POST['submit-mois'])) {
   if (empty($_POST['mois'])) {
     $err_mois = 'Sélectionner un cmois';
   } else {
@@ -66,14 +66,6 @@ if (!empty($_POST['submit-mois'])) {
   }
 }
 
-if (!empty($_POST['submit-genre'])) {
-  if (empty($_POST['genre'])) {
-    $err_genre = 'Sélectionner un genre';
-  } else {
-    $_SESSION['trie']['genre'] = $_POST['genre'];
-    header('Location: ./resultats/genre.php');
-  }
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -103,7 +95,7 @@ if (!empty($_POST['submit-genre'])) {
         </div>
         <select name="seance">
           <option value="">--Selectionné la Séance--</option>
-          <?php foreach ($resultats as $resultat) { ?>
+          <?php foreach ($resultatsx as $resultat) { ?>
             <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['date']; ?></option>
           <?php } ?>
         </select><br />
@@ -156,21 +148,6 @@ if (!empty($_POST['submit-genre'])) {
         <?php } ?>
       </select><br />
         <button type="submit" name="submit-mois" class="btn-hover color-11">
-          Validé
-        </button>
-      </form>
-    </div>
-    <h1>Par Genre</h1>
-    <hr />
-    <div class="contain">
-      <form method="POST">
-        <div class="erreur"></div>
-        <select name="genre">
-          <option value="">--Selectionné le Genre--</option>
-          <option value="femme">Femme</option>
-          <option value="homme">Homme</option>
-        </select><br />
-        <button type="submit" name="submit-genre" class="btn-hover color-11">
           Validé
         </button>
       </form>
