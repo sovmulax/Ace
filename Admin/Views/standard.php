@@ -34,7 +34,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>N°</th>
             <th>Nom et Prénom</th>
             <th>Classe</th>
-            <th>Date de naissance</th>
+            <th>Mois de naissance</th>
             <th>Contact</th>
           </tr>
           <?php while($res = $result->fetch()): ?>
@@ -45,7 +45,10 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $req->execute(['id' => $res['classe']]);
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
-            <td><?php echo $res['born_date']; ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM mois WHERE id = :id');
+                                            $req->execute(['id' => $res['mois']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
           </tr>
           <?php endwhile ?>
@@ -58,7 +61,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>N°</th>
             <th>Nom et Prénom</th>
             <th>Classe</th>
-            <th>Date de naissance</th>
+            <th>Mois de naissance</th>
             <th>Contact</th>
           </tr>
           <?php while($res = $result0->fetch()): ?>
@@ -69,7 +72,10 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $req->execute(['id' => $res['classe']]);
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
-            <td><?php echo $res['born_date']; ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM mois WHERE id = :id');
+                                            $req->execute(['id' => $res['mois']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
           </tr>
           <?php endwhile ?>
@@ -82,7 +88,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>N°</th>
             <th>Nom et Prénom</th>
             <th>Classe</th>
-            <th>Date de naissance</th>
+            <th>Mois de naissance</th>
             <th>Contact</th>
           </tr>
           <?php while($res = $result3->fetch()): ?>
@@ -93,7 +99,10 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $req->execute(['id' => $res['classe']]);
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
-            <td><?php echo $res['born_date']; ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM mois WHERE id = :id');
+                                            $req->execute(['id' => $res['mois']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
           </tr>
           <?php endwhile ?>
@@ -106,7 +115,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>N°</th>
             <th>Nom et Prénom</th>
             <th>Classe</th>
-            <th>Date de naissance</th>
+            <th>Mois de naissance</th>
             <th>Contact</th>
           </tr>
           <?php while($res = $result1->fetch()): ?>
@@ -117,7 +126,10 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $req->execute(['id' => $res['classe']]);
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
-            <td><?php echo $res['born_date']; ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM mois WHERE id = :id');
+                                            $req->execute(['id' => $res['mois']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
           </tr>
           <?php endwhile ?>
@@ -130,7 +142,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>N°</th>
             <th>Nom et Prénom</th>
             <th>Classe</th>
-            <th>Date de naissance</th>
+            <th>Mois de naissance</th>
             <th>Contact</th>
           </tr>
           <?php while($res = $result2->fetch()): ?>
@@ -141,7 +153,10 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $req->execute(['id' => $res['classe']]);
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
-            <td><?php echo $res['born_date']; ?></td>
+            <td><?php $req = $connexion->prepare('SELECT * FROM mois WHERE id = :id');
+                                            $req->execute(['id' => $res['mois']]);
+                                            $ress = $req->fetch();
+                                            echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
           </tr>
           <?php endwhile ?>

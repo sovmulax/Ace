@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
         }
       }
     } else {
+      $_SESSION['contact'] = htmlspecialchars($_POST['contact']);
       header('Location: step-2.php');
     }
   }

@@ -6,6 +6,8 @@ if (!isset($_SESSION['contact'])) {
 include '../../php/connexion.php';
 $errors = array('nom' => '', 'prenom' => '', 'email' => '', 'date' => '', 'classe' => '', 'comit' => '', 'lit' => '', 'chambre' => '');
 $start = '2020-01-01';
+$chambre = null;
+$lit = null;
 
 //commité
 $sql00 = "SELECT * FROM commite";
@@ -16,8 +18,14 @@ mysqli_free_result($result);
 //classe
 $sql0 = "SELECT * FROM classe";
 $results = mysqli_query($conn, $sql0);
-$resultat = mysqli_fetch_all($results, MYSQLI_ASSOC);
+$resultatt = mysqli_fetch_all($results, MYSQLI_ASSOC);
 mysqli_free_result($results);
+
+//Mois
+$sql01 = "SELECT * FROM mois";
+$results0 = mysqli_query($conn, $sql01);
+$resultatx = mysqli_fetch_all($results0, MYSQLI_ASSOC);
+mysqli_free_result($results0);
 
 if (isset($_POST['submit'])) {
   //check nom
@@ -25,7 +33,7 @@ if (isset($_POST['submit'])) {
     $errors['nom'] = "Entrée un nom";
   } else {
     $nom = htmlspecialchars($_POST['nom']);
-    if (!preg_match('/^[a-zA-Z\s]+$/', $nom)) {
+    if (!preg_match('/^\s*[a-zA-Zéèàê]+\s*$/', $nom)) {
       $errors['nom'] = "le nom entré n'est pas valide";
     }
   }
@@ -35,7 +43,7 @@ if (isset($_POST['submit'])) {
     $errors['prenom'] = "Entrée un prenom";
   } else {
     $prenom = htmlspecialchars($_POST['prenom']);
-    if (!preg_match('/^[a-zA-Z\s]+$/', $prenom)) {
+    if (!preg_match('/^([a-zA-Zéèàê\s]+)(\s*[a-zA-Zéèàê\s]*)*$/', $prenom)) {
       $errors['prenom'] = "le prenom entré n'est pas valide";
     }
   }
@@ -58,7 +66,7 @@ if (isset($_POST['submit'])) {
 
   //check date
   if (empty($_POST['date'])) {
-    $errors['date'] = "Entrée une date";
+    $errors['date'] = "Sélectionnez un Mois";
   } else {
     $date = $_POST['date'];
   }
@@ -78,25 +86,17 @@ if (isset($_POST['submit'])) {
   }
 
   //check chambre
-  if (empty($_POST['chambre'])) {
-    //
+  if ($_POST['chambre'] < 0 || $_POST['chambre'] > 80) {
+    $errors['chambre'] = "le numéro de la chambre n'est pas valide";
   } else {
-    if ($_POST['chambre'] < 0 || $_POST['chambre'] > 80) {
-      $errors['chambre'] = "le numéro de la chambre n'est pas valide";
-    } else {
-      $chambre = (int) htmlspecialchars($_POST['chambre']);
-    }
+    $chambre = (int) htmlspecialchars($_POST['chambre']);
   }
 
   //check lit
-  if (empty($_POST['lit'])) {
-    //
+  if ($_POST['lit'] < 0 || $_POST['lit'] > 3) {
+    $errors['lit'] = "le numéro de lit entré n'est pas valide";
   } else {
-    if ($_POST['lit'] < 0 || $_POST['lit'] > 3) {
-      $errors['lit'] = "le numéro de lit entré n'est pas valide";
-    } else {
-      $lit = (int) htmlspecialchars($_POST['lit']);
-    }
+    $lit = (int) htmlspecialchars($_POST['lit']);
   }
 
   if (array_filter($errors)) {
@@ -114,9 +114,16 @@ if (isset($_POST['submit'])) {
     $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
     $_SESSION['congrat']['nom'] = $nom;
     $_SESSION['congrat']['genre'] = $genre;
-    $sql = "INSERT INTO liste(nomPrenom, email, classe, commit, genre, born_date,	contact, chambre, lit) VALUES('$np', '$email', '$classe', '$commit', '$genre', '$date', '$contact', '$chambre', '$lit')";
+    $sql = "INSERT INTO liste(nomPrenom, email, classe, commit, genre, mois,	contact, chambre, lit) VALUES('$np', '$email', '$classe', '$commit', '$genre', '$date', '$contact', '$chambre', '$lit')";
     // save to db and check
     if (mysqli_query($conn, $sql)) {
+      $id = mysqli_insert_id($conn);
+      $sql0 = "INSERT INTO 2020_12_16(id_membre, presents, absents) VALUES('$id', 'oui', 'non')";
+      if (mysqli_query($conn, $sql0)) {
+        // success
+      } else {
+        echo 'query error: ' . mysqli_error($conn);
+      }
       // success
       header('Location: congrat.php');
     } else {
@@ -157,14 +164,18 @@ if (isset($_POST['submit'])) {
       <div class="erreur">
         <?php echo $errors['date']; ?>
       </div>
-      <label for="date">Date de Naissance</label><br />
-      <input type="date" name="date" id="date" max="<?php echo $start; ?>"/><br>
+      <select name="date">
+        <option value="">--Mois de Naissance--</option>
+        <?php foreach ($resultatx as $resultat) { ?>
+          <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['nom']; ?></option>
+        <?php } ?>
+      </select><br>
       <div class="erreur">
         <?php echo $errors['classe']; ?>
       </div>
       <select name="classe">
         <option value="">--Selectionné vôtre classe--</option>
-        <?php foreach ($resultat as $resultat) { ?>
+        <?php foreach ($resultatt as $resultat) { ?>
           <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['nom']; ?></option>
         <?php } ?>
       </select><br>
