@@ -5,11 +5,11 @@ $j = 1;
 $o = 1;
 $p = 1;
 $q = 1;
-$result = $connexion->query('SELECT * FROM liste WHERE classe = 1 OR classe = 2 OR classe = 3 OR classe = 4 OR classe = 5 ORDER BY nomPrenom ASC');
-$result0 = $connexion->query('SELECT * FROM liste WHERE classe = 6 OR classe = 7 OR classe = 8 OR classe = 9 ORDER BY nomPrenom ASC');
-$result1 = $connexion->query('SELECT * FROM liste WHERE classe = 10 ORDER BY nomPrenom ASC');
-$result2 = $connexion->query('SELECT * FROM liste WHERE classe = 11 ORDER BY nomPrenom ASC');
-$result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 13 OR classe = 14 OR classe = 15 ORDER BY nomPrenom ASC');
+$result = $connexion->query('SELECT * FROM liste WHERE classe = 1 OR classe = 2 OR classe = 3 OR classe = 4 OR classe = 5 AND commit != 8 ORDER BY nomPrenom ASC');
+$result0 = $connexion->query('SELECT * FROM liste WHERE classe = 6 OR classe = 7 OR classe = 8 OR classe = 9 AND commit != 8 ORDER BY nomPrenom ASC');
+$result1 = $connexion->query('SELECT * FROM liste WHERE classe = 10 AND commit != 8 ORDER BY nomPrenom ASC');
+$result2 = $connexion->query('SELECT * FROM liste WHERE classe = 11 AND commit != 8 ORDER BY nomPrenom ASC');
+$result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 AND commit != 8 OR classe = 13 OR classe = 14 OR classe = 15 ORDER BY nomPrenom ASC');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,6 +36,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>Classe</th>
             <th>Mois de naissance</th>
             <th>Contact</th>
+            <th>Modifiez</th>
           </tr>
           <?php while($res = $result->fetch()): ?>
           <tr>
@@ -50,6 +51,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
+            <td><a href="./modifier.php?id=<?php echo $res['id']; ?>">modifier</a></td>
           </tr>
           <?php endwhile ?>
         </table>
@@ -63,6 +65,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>Classe</th>
             <th>Mois de naissance</th>
             <th>Contact</th>
+            <th>Modifiez</th>
           </tr>
           <?php while($res = $result0->fetch()): ?>
           <tr>
@@ -77,6 +80,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
+            <td><a href="./modifier.php?id=<?php echo $res['id']; ?>">modifier</a></td>
           </tr>
           <?php endwhile ?>
         </table>
@@ -90,6 +94,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>Classe</th>
             <th>Mois de naissance</th>
             <th>Contact</th>
+            <th>Modifiez</th>
           </tr>
           <?php while($res = $result3->fetch()): ?>
           <tr>
@@ -104,6 +109,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
+            <td><a href="./modifier.php?id=<?php echo $res['id']; ?>">modifier</a></td>
           </tr>
           <?php endwhile ?>
         </table>
@@ -117,6 +123,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>Classe</th>
             <th>Mois de naissance</th>
             <th>Contact</th>
+            <th>Modifiez</th>
           </tr>
           <?php while($res = $result1->fetch()): ?>
           <tr>
@@ -131,6 +138,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
+            <td><a href="./modifier.php?id=<?php echo $res['id']; ?>">modifier</a></td>
           </tr>
           <?php endwhile ?>
         </table>
@@ -144,6 +152,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
             <th>Classe</th>
             <th>Mois de naissance</th>
             <th>Contact</th>
+            <th>Modifiez</th>
           </tr>
           <?php while($res = $result2->fetch()): ?>
           <tr>
@@ -158,6 +167,7 @@ $result3 = $connexion->query('SELECT * FROM liste WHERE classe = 12 OR classe = 
                                             $ress = $req->fetch();
                                             echo $ress['nom']; ?></td>
             <td><?php echo $res['contact']; ?></td>
+            <td><a href="./modifier.php?id=<?php echo $res['id']; ?>">modifier</a></td>
           </tr>
           <?php endwhile ?>
         </table>

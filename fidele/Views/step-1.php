@@ -4,8 +4,8 @@ $errors = array('contact' => '');
 $bool = null;
 if (isset($_POST['submit'])) {
   if (empty($_POST['contact'])) {
-    $errors['contact'] = "Donner vôtre contact";
-  } elseif ((strlen($_POST['contact']) > 8) || $_POST['contact'] < 0) {
+    $errors['contact'] = "Donner votre contact";
+  } elseif ((strlen($_POST['contact']) < 8) || $_POST['contact'] < 0) {
     $errors['contact'] = "le numéro entré n'est pas valide";
   } else {
     $req = $connexion->prepare('SELECT * FROM liste WHERE contact = ?');

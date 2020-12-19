@@ -124,3 +124,7 @@ tr {
 form{
   text-align: center;
 }
+
+td a{
+  color: #ff0066;
+}
