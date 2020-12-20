@@ -117,8 +117,16 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO liste(nomPrenom, email, classe, commit, genre, mois,	contact, chambre, lit) VALUES('$np', '$email', '$classe', '$commit', '$genre', '$date', '$contact', '$chambre', '$lit')";
     // save to db and check
     if (mysqli_query($conn, $sql)) {
+      $sql010 = "SELECT * FROM dates";
+      $result = mysqli_query($conn, $sql010);
+      $resultatsx = mysqli_fetch_all($result, MYSQLI_ASSOC);
+      mysqli_free_result($result);
+      $i = 0;
+      foreach($resultatsx as $res){
+        $i++;
+      }
       $id = mysqli_insert_id($conn);
-      $sql0 = "INSERT INTO 2020_12_16(id_membre, presents, absents) VALUES('$id', 'oui', 'non')";
+      $sql0 = "INSERT INTO seances(id_membre, presents, absents, id_date) VALUES('$id', 'oui', 'non', '$i')";
       if (mysqli_query($conn, $sql0)) {
         // success
       } else {

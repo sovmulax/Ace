@@ -1,6 +1,6 @@
 <?php session_start();
 include '../../php/connexion.php';
-$errors = array('nom' => '', 'email' => '', 'date' => '', 'classe' => '', 'comit' => '', 'lit' => '', 'chambre' => '', 'contact'=>'');
+$errors = array('nom' => '', 'email' => '', 'date' => '', 'classe' => '', 'comit' => '', 'lit' => '', 'chambre' => '', 'contact' => '');
 $start = '2020-01-01';
 $chambre = null;
 $lit = null;
@@ -45,8 +45,8 @@ if (isset($_POST['submit'])) {
     $errors['contact'] = "Donner votre contact";
   } elseif ((strlen($_POST['contact']) < 8) || $_POST['contact'] < 0) {
     $errors['contact'] = "le numéro entré n'est pas valide";
-  }else{
-    $contact = (int) htmlspecialchars($_POST['contact']);
+  } else {
+    $contact = htmlspecialchars($_POST['contact']);
   }
 
   //check email
@@ -55,14 +55,7 @@ if (isset($_POST['submit'])) {
   } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     $errors['email'] = "le mail entré n'est pas valide";
   } else {
-    $req = $connexion->prepare('SELECT id FROM liste WHERE email = ?');
-    $req->execute([$_POST['email']]);
-    $user = $req->fetch();
-    if ($user) {
-      $errors['email'] = "Cet email existe déjà";
-    } else {
-      $email = htmlspecialchars($_POST['email']);
-    }
+    $email = htmlspecialchars($_POST['email']);
   }
 
   //check date
@@ -90,14 +83,14 @@ if (isset($_POST['submit'])) {
   if ($_POST['chambre'] < 0 || $_POST['chambre'] > 80) {
     $errors['chambre'] = "le numéro de la chambre n'est pas valide";
   } else {
-    $chambre = (int) htmlspecialchars($_POST['chambre']);
+    $chambre = htmlspecialchars($_POST['chambre']);
   }
 
   //check lit
   if ($_POST['lit'] < 0 || $_POST['lit'] > 3) {
     $errors['lit'] = "le numéro de lit entré n'est pas valide";
   } else {
-    $lit = (int) htmlspecialchars($_POST['lit']);
+    $lit = htmlspecialchars($_POST['lit']);
   }
 
   if (array_filter($errors)) {
@@ -107,11 +100,11 @@ if (isset($_POST['submit'])) {
     $nom = mysqli_real_escape_string($conn, $_POST['nom']);
     $np = $nom . ' ' . $prenom;
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $contact = mysqli_real_escape_string($conn, $_SESSION['contact']);
+    $contact = mysqli_real_escape_string($conn, $_POST['contact']);
     $lit = mysqli_real_escape_string($conn, $_POST['lit']);
     $chambre = mysqli_real_escape_string($conn, $_POST['chambre']);
     $genre = $_POST['genre'];
-    $sql = "UPDATE liste SET nomPrenom = '$nom', email = '$email', classe = '$classe', commit = '$commit', genre = '$genre', mois = '$date', contact = '$date', chambre = '$chambre', lit = '$lit' WHERE id = '$id'";
+    $sql = "UPDATE liste SET nomPrenom = '$nom', email = '$email', classe = '$classe', commit = '$commit', genre = '$genre', mois = '$date', contact = '$contact', chambre = '$chambre', lit = '$lit' WHERE id = '$id'";
     // save to db and check
     if (mysqli_query($conn, $sql)) {
       // success
@@ -142,15 +135,15 @@ if (isset($_POST['submit'])) {
       <div class="erreur">
         <?php echo $errors['nom']; ?>
       </div>
-      <input type="text" name="nom" placeholder="Nom" value="<?php echo $res['nomPrenom'] ?>"/><br>
+      <input type="text" name="nom" placeholder="Nom" value="<?php echo $res['nomPrenom'] ?>" /><br>
       <div class="erreur">
         <?php echo $errors['contact']; ?>
       </div>
-      <input type="tel" name="contact" placeholder="Contact"  value="<?php echo $res['contact'] ?>"/><br />
+      <input type="tel" name="contact" placeholder="Contact" value="<?php echo $res['contact'] ?>" /><br />
       <div class="erreur">
         <?php echo $errors['email']; ?>
       </div>
-      <input type="email" name="email" placeholder="Entrée vôtre email" value="<?php echo $res['email'] ?>"/><br>
+      <input type="email" name="email" placeholder="Entrée vôtre email" value="<?php echo $res['email'] ?>" /><br>
       <div class="erreur">
         <?php echo $errors['date']; ?>
       </div>
@@ -186,12 +179,12 @@ if (isset($_POST['submit'])) {
         <?php echo $errors['chambre']; ?>
       </div>
       <label for="chambre">N° Chambre</label><br>
-      <input type="number" name="chambre" min="01" max="80" id="chambre" value="<?php echo $res['chambre'] ?>"/><br>
+      <input type="number" name="chambre" min="01" max="80" id="chambre" value="<?php echo $res['chambre'] ?>" /><br>
       <div class="erreur">
         <?php echo $errors['lit']; ?>
       </div>
       <label for="lit">N° Lit</label><br>
-      <input type="number" name="lit" min="1" max="3" id="lit" value="<?php echo $res['lit'] ?>"/><br>
+      <input type="number" name="lit" min="1" max="3" id="lit" value="<?php echo $res['lit'] ?>" /><br>
       <button type="submit" name="submit" class="btn-hover color-11">Validé</button>
     </form>
   </div>

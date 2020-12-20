@@ -128,3 +128,21 @@ form{
 td a{
   color: #ff0066;
 }
+
+.show{
+  text-align: center;
+}
+
+.show input{
+  margin: 1rem;
+}
+
+.block{
+  text-align: center;
+}
+
+.text{
+  font-size: 1.2em;
+  font-style: italic;
+  font-weight: 800;
+}

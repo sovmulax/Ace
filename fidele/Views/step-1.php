@@ -13,14 +13,24 @@ if (isset($_POST['submit'])) {
     $user = $req->fetch();
     if ($user == true) {
       $id = $user['id'];
-      $reqs = $connexion->prepare('SELECT * FROM 2020_12_11 WHERE id_membre = ?');
+      $reqs = $connexion->prepare('SELECT * FROM seances WHERE id_membre = ?');
       $reqs->execute([$id]);
       $users = $reqs->fetch();
       if ($users) {
         $errors['contact'] = "Vous avez déjà été marquer présent";
       } else {
+      
+      $sql00 = "SELECT * FROM dates";
+      $result = mysqli_query($conn, $sql00);
+      $resultatsx = mysqli_fetch_all($result, MYSQLI_ASSOC);
+      mysqli_free_result($result);
+      $i = 0;
+      foreach($resultatsx as $res){
+        $i++;
+      }
+      
         //marquer présent
-        $sql = "INSERT INTO 2020_12_11(id_membre, presents, absents) VALUES('$id', 'oui', 'non')";
+        $sql = "INSERT INTO seances(id_membre, presents, absents, id_date) VALUES('$id', 'oui', 'non', '$i')";
         $_SESSION['contact'] = htmlspecialchars($_POST['contact']);
         if (mysqli_query($conn, $sql)) {
           // success

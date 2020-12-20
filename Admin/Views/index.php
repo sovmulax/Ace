@@ -37,6 +37,7 @@ $genre01 = $connexion->query('SELECT * FROM liste WHERE commit = 8');
       <li><a href="index.php">Statiques Générale</a></li>
       <li><a href="standard.php">les listes Standard</a></li>
       <li><a href="demande.php">Liste trié</a></li>
+      <li><a href="nex.php">Séance</a></li>
     </ul>
   </nav>
   <div class="container">
