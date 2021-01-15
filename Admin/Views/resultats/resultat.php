@@ -5,7 +5,7 @@ $yes = 'oui';
 $i = 1;
 
 //test
-$sql00 = "SELECT id_presence FROM seances WHERE presents = 'oui' AND id_date = '$resultat'";
+$sql00 = "SELECT * FROM seances WHERE presents = 'oui' AND id_date = '$resultat'";
 $result = mysqli_query($conn, $sql00);
 $resultats = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
@@ -34,7 +34,7 @@ mysqli_free_result($result);
           <th>Chambre-Lit</th>
         </tr>
         <?php foreach ($resultats as $res) :
-          $ress = $res['id_presence'];
+          $ress = $res['id_membre'];
           $sql0 = "SELECT * FROM liste WHERE id = '$ress' ORDER BY nomPrenom ASC";
           $result = mysqli_query($conn, $sql0);
           $resultat = mysqli_fetch_all($result, MYSQLI_ASSOC);

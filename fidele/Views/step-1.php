@@ -16,7 +16,8 @@ if (isset($_POST['submit'])) {
       $reqs = $connexion->prepare('SELECT * FROM seances WHERE id_membre = ?');
       $reqs->execute([$id]);
       $users = $reqs->fetch();
-      if ($users) {
+      $userss = false;
+      if ($userss) {
         $errors['contact'] = "Vous avez déjà été marquer présent";
       } else {
       
