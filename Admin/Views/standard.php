@@ -5,7 +5,7 @@ $j = 1;
 $o = 1;
 $p = 1;
 $q = 1;
-$result = $connexion->query('SELECT * FROM liste WHERE classe = 1 OR classe = 2 OR classe = 3 OR classe = 4 OR classe = 5 AND commit != 8 AND commit != 7 ORDER BY nomPrenom ASC');
+$result = $connexion->query('SELECT * FROM liste WHERE classe = 1 OR classe = 2 OR classe = 3 OR classe = 4 OR classe = 5 OR classe = 19 AND commit != 8 AND commit != 7 ORDER BY nomPrenom ASC');
 $result0 = $connexion->query('SELECT * FROM liste WHERE classe = 6 OR classe = 7 OR classe = 8 OR classe = 9 AND commit != 8 AND commit != 7 ORDER BY nomPrenom ASC');
 $result1 = $connexion->query('SELECT * FROM liste WHERE classe = 10 AND commit != 8 AND commit != 7 ORDER BY nomPrenom ASC');
 $result2 = $connexion->query('SELECT * FROM liste WHERE classe = 11 AND commit != 8 AND commit != 7 ORDER BY nomPrenom ASC');
