@@ -117,6 +117,7 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO liste(nomPrenom, email, classe, commit, genre, mois,	contact, chambre, lit) VALUES('$np', '$email', '$classe', '$commit', '$genre', '$date', '$contact', '$chambre', '$lit')";
     // save to db and check
     if (mysqli_query($conn, $sql)) {
+      $id = mysqli_insert_id($conn);
       $sql010 = "SELECT * FROM dates";
       $result = mysqli_query($conn, $sql010);
       $resultatsx = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -125,7 +126,6 @@ if (isset($_POST['submit'])) {
       foreach($resultatsx as $res){
         $i++;
       }
-      $id = mysqli_insert_id($conn);
       $sql0 = "INSERT INTO seances(id_membre, presents, absents, id_date) VALUES('$id', 'oui', 'non', '$i')";
       if (mysqli_query($conn, $sql0)) {
         // success

@@ -74,7 +74,7 @@ if (isset($_POST['submit-mois'])) {
   <meta charset="UTF-8" />
   <title>Ace | Administrateur</title>
   <link rel="stylesheet" href="../Static/style.css" />
-  <link rel="stylesheet" href="/fidele/Static/css/formulaire.css" />
+  <link rel="stylesheet" href="../..//fidele/Static/css/formulaire.css" />
 </head>
 
 <body>
