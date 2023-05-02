@@ -7,6 +7,7 @@ include '../../php/connexion.php';
 $errors = array('nom' => '', 'prenom' => '', 'email' => '', 'date' => '', 'classe' => '', 'comit' => '', 'lit' => '', 'chambre' => '');
 $start = '2020-01-01';
 
+
 //commité
 $sql00 = "SELECT * FROM commite";
 $result = mysqli_query($conn, $sql00);
@@ -120,6 +121,7 @@ if (isset($_POST['submit'])) {
     // save to db and check
     if (mysqli_query($conn, $sql)) {
       // success
+
       header('Location: congrat.php');
     } else {
       echo 'query error: ' . mysqli_error($conn);
@@ -178,6 +180,7 @@ if (isset($_POST['submit'])) {
         <?php echo $errors['comit']; ?>
       </div>
       <select name="comit">
+
         <option value="">--Selectionné vôtre Comité--</option>
         <?php foreach ($resultats as $resultat) { ?>
           <option value="<?php echo $resultat['id']; ?>"><?php echo $resultat['nom']; ?></option>
@@ -193,6 +196,7 @@ if (isset($_POST['submit'])) {
       </div>
       <label for="lit">N° Lit</label><br>
       <input type="number" name="lit" min="1" max="3" id="lit" /><br>
+
       <button type="submit" name="submit" class="btn-hover color-11">Validé</button>
     </form>
   </div>

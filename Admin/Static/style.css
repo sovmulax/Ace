@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f8f1f4;
+}
+
+nav {
+  width: 96%;
+  padding: 2%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  position: static;
+  -webkit-box-shadow: 0px 0px 50px -11px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: 0px 0px 50px -11px rgba(0, 0, 0, 0.66);
+  box-shadow: 0px 0px 50px -11px rgba(0, 0, 0, 0.66);
+}
+
+ul li {
+  list-style: none;
+  display: inline-block;
+  border-bottom: 1px solid #ff0066;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  padding: 1rem;
+  height: 100%;
+}
+
+ul li a:hover {
+  color: white;
+}
+
+ul li:hover {
+  background-color: #ff0066;
+  color: white;
+  transition: 0.4s ease;
+}
+
+.contain {
+  margin-top: 3rem;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.containt {
+  margin-top: 3rem;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.container {
+  margin-top: 3rem;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+
+.stat {
+  width: 10rem;
+  height: 10rem;
+  padding: 2rem;
+  margin: 0.5rem;
+  background-color: white;
+  text-align: center;
+  border-radius: 6px;
+  line-height: 2.5rem;
+}
+
+.stat h2 {
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.stat:hover {
+  background-color: #ff0066;
+  color: #f8f1f4;
+  transition: 0.3s ease;
+}
+
+table {
+  width: 100%;
+}
+
+table,
+td,
+th,
+tr {
+  height: 3.5rem;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th {
+  border: 1px solid #f8f1f4;
+  background-color: #ff0066;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+td,
+tr {
+  background-color: white;
+  border: 1px solid white;
+}
+
+form{
+  text-align: center;
+}

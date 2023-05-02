@@ -18,7 +18,7 @@ input {
   width: 25rem;
   height: 2rem;
   font-size: 1em;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin: 0.5rem;
   background-color: #fff;
 }
@@ -35,21 +35,11 @@ select {
   width: 25rem;
   height: 2rem;
   font-size: 1em;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin: 0.5rem;
   background-color: #fff;
 }
 
-input[name="nom"] {
-  border: transparent;
-  border-bottom: 1px solid #ff0066;
-  width: 25rem;
-  line-height: 2rem;
-  font-size: 1em;
-  letter-spacing: 1px;
-  margin: 0.5rem;
-  background-color: #fff;
-}
 
 input:focus {
   border-bottom: 3px solid #ff0066;
@@ -114,15 +104,17 @@ button a {
     font-size: 2em;
 }
 
+.erreur{
+  font-style: italic;
+  font-size: 1em;
+  color: red;
+}
+
 /* gestion des écrans */
 
 @media (max-width: 550px) {
   .titles {
     font-size: 1.8em;
-  }
-
-  input[name="nom"] {
-    width: 20rem;
   }
 
   input{
@@ -153,10 +145,6 @@ button a {
 
   .titles {
     font-size: 1.5em;
-  }
-
-  input[name="nom"] {
-    width: 15rem;
   }
 
   input{
