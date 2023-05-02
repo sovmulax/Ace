@@ -1,10 +1,6 @@
 <?php session_start();
-if (!isset($_SESSION['contact'])) {
-  header('Location: index.html');
-  exit();
-}
 include '../../php/connexion.php';
-$errors = array('nom' => '', 'prenom' => '', 'email' => '', 'date' => '', 'classe' => '', 'comit' => '', 'lit' => '', 'chambre' => '');
+$errors = array('nom' => '', 'email' => '', 'date' => '', 'classe' => '', 'comit' => '', 'lit' => '', 'chambre' => '', 'contact' => '');
 $start = '2020-01-01';
 $chambre = null;
 $lit = null;
@@ -27,25 +23,30 @@ $results0 = mysqli_query($conn, $sql01);
 $resultatx = mysqli_fetch_all($results0, MYSQLI_ASSOC);
 mysqli_free_result($results0);
 
+//fidele
+$id = $_GET['id'];
+$req = $connexion->prepare('SELECT * FROM liste WHERE id = :id');
+$req->execute(['id' => $id]);
+$res = $req->fetch();
+
 if (isset($_POST['submit'])) {
   //check nom
   if (empty($_POST['nom'])) {
     $errors['nom'] = "Entrée un nom";
   } else {
     $nom = htmlspecialchars($_POST['nom']);
-    if (!preg_match('/^\s*[a-zA-Zéèàê]+\s*$/', $nom)) {
+    if (!preg_match('/^([a-zA-Zéèàê\s]+)(\s*[a-zA-Zéèàê\s]*)*$/', $nom)) {
       $errors['nom'] = "le nom entré n'est pas valide";
     }
   }
 
-  //check prenom
-  if (empty($_POST['prenom'])) {
-    $errors['prenom'] = "Entrée un prenom";
+  //check contact
+  if (empty($_POST['contact'])) {
+    $errors['contact'] = "Donner votre contact";
+  } elseif ((strlen($_POST['contact']) < 8) || $_POST['contact'] < 0) {
+    $errors['contact'] = "le numéro entré n'est pas valide";
   } else {
-    $prenom = htmlspecialchars($_POST['prenom']);
-    if (!preg_match('/^([a-zA-Zéèàê\s]+)(\s*[a-zA-Zéèàê\s]*)*$/', $prenom)) {
-      $errors['prenom'] = "le prenom entré n'est pas valide";
-    }
+    $contact = htmlspecialchars($_POST['contact']);
   }
 
   //check email
@@ -54,14 +55,7 @@ if (isset($_POST['submit'])) {
   } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     $errors['email'] = "le mail entré n'est pas valide";
   } else {
-    $req = $connexion->prepare('SELECT id FROM liste WHERE email = ?');
-    $req->execute([$_POST['email']]);
-    $user = $req->fetch();
-    if ($user) {
-      $errors['email'] = "Cet email existe déjà";
-    } else {
-      $email = htmlspecialchars($_POST['email']);
-    }
+    $email = htmlspecialchars($_POST['email']);
   }
 
   //check date
@@ -89,14 +83,14 @@ if (isset($_POST['submit'])) {
   if ($_POST['chambre'] < 0 || $_POST['chambre'] > 80) {
     $errors['chambre'] = "le numéro de la chambre n'est pas valide";
   } else {
-    $chambre = (int) htmlspecialchars($_POST['chambre']);
+    $chambre = htmlspecialchars($_POST['chambre']);
   }
 
   //check lit
   if ($_POST['lit'] < 0 || $_POST['lit'] > 3) {
     $errors['lit'] = "le numéro de lit entré n'est pas valide";
   } else {
-    $lit = (int) htmlspecialchars($_POST['lit']);
+    $lit = htmlspecialchars($_POST['lit']);
   }
 
   if (array_filter($errors)) {
@@ -104,41 +98,17 @@ if (isset($_POST['submit'])) {
   } else {
     //securité des donners
     $nom = mysqli_real_escape_string($conn, $_POST['nom']);
-    $prenom = mysqli_real_escape_string($conn, $_POST['prenom']);
     $np = $nom . ' ' . $prenom;
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $contact = mysqli_real_escape_string($conn, $_SESSION['contact']);
+    $contact = mysqli_real_escape_string($conn, $_POST['contact']);
     $lit = mysqli_real_escape_string($conn, $_POST['lit']);
     $chambre = mysqli_real_escape_string($conn, $_POST['chambre']);
-    $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
-    $_SESSION['congrat']['nom'] = $nom;
-    $_SESSION['congrat']['genre'] = $genre;
-    $_SESSION['valid'] = '';
-    $_SESSION['valid'] = 'maintenant';
     $genre = $_POST['genre'];
-    $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
-    $_SESSION['congrat']['nom'] = $nom;
-    $_SESSION['congrat']['genre'] = $genre;
-    $sql = "INSERT INTO liste(nomPrenom, email, classe, commit, genre, mois,	contact, chambre, lit) VALUES('$np', '$email', '$classe', '$commit', '$genre', '$date', '$contact', '$chambre', '$lit')";
+    $sql = "UPDATE liste SET nomPrenom = '$nom', email = '$email', classe = '$classe', commit = '$commit', genre = '$genre', mois = '$date', contact = '$contact', chambre = '$chambre', lit = '$lit' WHERE id = '$id'";
     // save to db and check
     if (mysqli_query($conn, $sql)) {
-      $sql010 = "SELECT * FROM dates";
-      $result = mysqli_query($conn, $sql010);
-      $resultatsx = mysqli_fetch_all($result, MYSQLI_ASSOC);
-      mysqli_free_result($result);
-      $i = 0;
-      foreach($resultatsx as $res){
-        $i++;
-      }
-      $id = mysqli_insert_id($conn);
-      $sql0 = "INSERT INTO seances(id_membre, presents, absents, id_date) VALUES('$id', 'oui', 'non', '$i')";
-      if (mysqli_query($conn, $sql0)) {
-        // success
-      } else {
-        echo 'query error: ' . mysqli_error($conn);
-      }
       // success
-      header('Location: congrat.php');
+      header('Location: standard.php');
     } else {
       echo 'query error: ' . mysqli_error($conn);
     }
@@ -153,7 +123,7 @@ if (isset($_POST['submit'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ace | Inscription</title>
-  <link rel="stylesheet" href="../Static/css/formulaire.css" />
+  <link rel="stylesheet" href="../../fidele/Static/css/formulaire.css" />
 </head>
 
 <body>
@@ -165,15 +135,15 @@ if (isset($_POST['submit'])) {
       <div class="erreur">
         <?php echo $errors['nom']; ?>
       </div>
-      <input type="text" name="nom" placeholder="Nom" /><br>
+      <input type="text" name="nom" placeholder="Nom" value="<?php echo $res['nomPrenom'] ?>" /><br>
       <div class="erreur">
-        <?php echo $errors['prenom']; ?>
+        <?php echo $errors['contact']; ?>
       </div>
-      <input type="text" name="prenom" placeholder="Prénom" /><br>
+      <input type="tel" name="contact" placeholder="Contact" value="<?php echo $res['contact'] ?>" /><br />
       <div class="erreur">
         <?php echo $errors['email']; ?>
       </div>
-      <input type="email" name="email" placeholder="Entrée vôtre email" /><br>
+      <input type="email" name="email" placeholder="Entrée vôtre email" value="<?php echo $res['email'] ?>" /><br>
       <div class="erreur">
         <?php echo $errors['date']; ?>
       </div>
@@ -209,13 +179,12 @@ if (isset($_POST['submit'])) {
         <?php echo $errors['chambre']; ?>
       </div>
       <label for="chambre">N° Chambre</label><br>
-      <input type="number" name="chambre" min="01" max="80" id="chambre" /><br>
+      <input type="number" name="chambre" min="01" max="80" id="chambre" value="<?php echo $res['chambre'] ?>" /><br>
       <div class="erreur">
         <?php echo $errors['lit']; ?>
       </div>
       <label for="lit">N° Lit</label><br>
-      <input type="number" name="lit" min="1" max="3" id="lit" /><br>
-
+      <input type="number" name="lit" min="1" max="3" id="lit" value="<?php echo $res['lit'] ?>" /><br>
       <button type="submit" name="submit" class="btn-hover color-11">Validé</button>
     </form>
   </div>

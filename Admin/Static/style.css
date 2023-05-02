@@ -79,7 +79,7 @@ ul li:hover {
   padding: 2rem;
   margin: 0.5rem;
   background-color: white;
-  text-align: center;
+  text-align: center !important;
   border-radius: 6px;
   line-height: 2.5rem;
 }
@@ -117,10 +117,32 @@ th {
 
 td,
 tr {
-  background-color: white;
+  background-color: #fcf4f8;
   border: 1px solid white;
 }
 
 form{
   text-align: center;
+}
+
+td a{
+  color: #ff0066;
+}
+
+.show{
+  text-align: center;
+}
+
+.show input{
+  margin: 1rem;
+}
+
+.block{
+  text-align: center;
+}
+
+.text{
+  font-size: 1.2em;
+  font-style: italic;
+  font-weight: 800;
 }
