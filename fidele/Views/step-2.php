@@ -110,6 +110,11 @@ if (isset($_POST['submit'])) {
     $contact = mysqli_real_escape_string($conn, $_SESSION['contact']);
     $lit = mysqli_real_escape_string($conn, $_POST['lit']);
     $chambre = mysqli_real_escape_string($conn, $_POST['chambre']);
+    $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
+    $_SESSION['congrat']['nom'] = $nom;
+    $_SESSION['congrat']['genre'] = $genre;
+    $_SESSION['valid'] = '';
+    $_SESSION['valid'] = 'maintenant';
     $genre = $_POST['genre'];
     $_SESSION['congrat'] = array('nom' => '', 'genre' => '');
     $_SESSION['congrat']['nom'] = $nom;
@@ -210,6 +215,7 @@ if (isset($_POST['submit'])) {
       </div>
       <label for="lit">N° Lit</label><br>
       <input type="number" name="lit" min="1" max="3" id="lit" /><br>
+
       <button type="submit" name="submit" class="btn-hover color-11">Validé</button>
     </form>
   </div>
